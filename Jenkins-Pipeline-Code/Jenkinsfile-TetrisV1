@@ -101,7 +101,7 @@ pipeline {
                             git config user.name "deepthakar"
                             BUILD_NUMBER=${BUILD_NUMBER}
                             echo $BUILD_NUMBER
-                            imageTag=$("grep -oP '(?<=tetrisv1:)[^ ]+' deployment-service.yml || true")
+                            imageTag=$("grep -oP '(?<=tetrisv1:)[^ ]+' deployment-service.yml")
                             echo $imageTag
                             sed -i "s/tetrisv1:${imageTag}/tetrisv1:${BUILD_NUMBER}/" deployment-service.yml
                             git add deployment-service.yml
