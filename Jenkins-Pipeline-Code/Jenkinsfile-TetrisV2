@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git'
+                git branch: 'main', url: 'https://github.com/deepthakar/DevSecOps-Project.git'
             }
         }
         stage('Sonarqube Analysis') {
@@ -90,15 +90,15 @@ pipeline {
         }
         stage('Update Deployment file') {
             environment {
-                GIT_REPO_NAME = "End-to-End-Kubernetes-DevSecOps-Tetris-Project"
-                GIT_USER_NAME = "AmanPathak-DevOps"
+                GIT_REPO_NAME = "DevSecOps-Project"
+                GIT_USER_NAME = "deepthakar"
             }
             steps {
                 dir('Manifest-file') {
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
-                            git config user.email "aman07pathak@gmail.com"
-                            git config user.name "AmanPathak-DevOps"
+                            git config user.email "deepthakar03@gmail.com"
+                            git config user.name "deepthakar"
                             BUILD_NUMBER=${BUILD_NUMBER}
                             echo $BUILD_NUMBER
                             imageTag=$(grep -oP '(?<=tetrisv1:)[^ ]+' deployment-service.yml)
